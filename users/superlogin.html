@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Log in Page</title>
+    <link rel="stylesheet" href="../resource/index.css">
+</head>
+<body>
+
+<div>
+    <ul class="topNav">
+        <li class="topNavLeft"><a href="../htdocs/index.html">Home</a></li>
+        <li class="topNavRight"><a href="../users/signup.html">Sign up</a></li>
+        <li class="topNavRight"><a href="../users/login.html">Log in</a></li>
+    </ul>
+</div>
+
+<div class="formFormat">
+
+    <form name="login" action="../api/user/admin/superlogin.php" method="post">
+        <p>Admin Username: <input type=text name="name"></p>
+        <p>Password: <input type=password name="password"></p>
+        <p><input type="submit" name="submit" value="submit"></p>
+    </form>
+</div>
+
+</body>
+</html>

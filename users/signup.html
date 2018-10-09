@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sign Up Page</title>
+    <link rel="stylesheet" href="../resource/index.css">
+
+</head>
+<body>
+
+<div>
+    <ul class="topNav">
+        <li class="topNavLeft"><a href="../htdocs/index.html">Home</a></li>
+        <li class="topNavRight"><a href="../users/signup.html">Sign up</a></li>
+        <li class="topNavRight"><a href="../users/login.html">Log in</a></li>
+    </ul>
+</div>
+
+<div class="formFormat">
+    <form action="../api/user/player/signup.php" method="post">
+        <p>Username: <input type="text" name="name"></p>
+        <p>Password: <input type="text" name="password"></p>
+        <p>Email: <input type="text" name="email"></p>
+        <p><input type="submit" name="submit" value="subimt"></p>
+    </form>
+</div>
+
+</body>
+</html>

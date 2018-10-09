@@ -1,0 +1,52 @@
+html{
+    font-family:"Times New Roman",
+    Times,serif;
+}
+
+.topNav {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+.topNavLeft{
+    float: left;
+}
+
+.topNavRight{
+    float: right;
+}
+
+ul.topNav li{
+    display: inline-block;
+}
+
+ul.topNav li a {
+    display: inline-block;
+    color: whitesmoke;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    transition: 0.3s;
+    font-size: 17px;
+}
+
+.title{
+    text-align: center;
+}
+
+.welcome{
+    margin: 20% 25%;
+}
+
+.title{
+    font-family: "Fira Code Medium";
+    font-size: 40px;
+}
+
+.formFormat{
+    margin: 20% 25%;
+    text-align: center;
+}

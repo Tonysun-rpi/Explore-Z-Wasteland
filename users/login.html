@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Log in Page</title>
+    <link rel="stylesheet" href="../resource/index.css">
+</head>
+<body>
+
+<div>
+    <ul class="topNav">
+        <li class="topNavLeft"><a href="../htdocs/index.html">Home</a></li>
+        <li class="topNavRight"><a href="../users/signup.html">Sign up</a></li>
+        <li class="topNavRight"><a href="../users/login.html">Log in</a></li>
+    </ul>
+</div>
+
+<div class="formFormat">
+
+    <form name="login" action="../api/user/player/login.php" method="post">
+        <p>Username: <input type=text name="name"></p>
+        <p>Password: <input type=text name="password"></p>
+        <div style="display: inline-block">
+            <p style="float: left"><input type="submit" name="submit" value="submit"></p>
+            <a style="float: right;margin-top: 18px;padding-left: 5px;" href="superlogin.html">Admin user log in here</a>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>
