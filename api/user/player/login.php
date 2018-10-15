@@ -8,17 +8,17 @@ if (!isset($_POST["submit"])) {
 
 include("../../serverConnection/connectDB.php");
 include("../../view/alertAndPageJump.php");
+require_once ("loginHelper.php");
 
-$con=connectDB("127.0.0.1","root","","users");
+$redis=connectDB();
 
 $name = $_POST['name'];//get username
 $passowrdH = md5($_POST['password']);//get password
 
 if ($name and $_POST['password']) {//if username and password are entered, query
-    $sql = "select * from user where account_id = '$name' and password='$passowrdH'";
-    $result = $con->query($sql);
+    $result = isCorrectPassword($name, $passowrdH, $redis);
 
-    if ($result->num_rows>0) {
+    if ($result) {
         header("refresh:0;url=../../../htdocs/index.html");
         exit;
     } else {
@@ -29,5 +29,5 @@ if ($name and $_POST['password']) {//if username and password are entered, query
     alertAndJump("Please fill in all fields","../../../users/login.html",2400);
 }
 
-$con->close();
+$redis->close();
 ?>

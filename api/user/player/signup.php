@@ -9,7 +9,7 @@ include("signUpHelper.php");
 include("../../view/alertAndPageJump.php");
 include("../../serverConnection/connectDB.php");
 
-$con=connectDB("127.0.0.1","root","","users");
+$redis=connectDB();
 
 $name = $_POST['name'];//get user name
 $email = $_POST['email'];
@@ -22,18 +22,17 @@ $passwordH =md5($_POST['password']);//get user password
 
 
 //check duplication
-$is_dup=checkDup($name,$con);
+$is_dup=checkDup($name,$redis);
 if($is_dup) {
-    $con->close();
     alertAndJump('Please pick another Username','../../../users/signup.html',1);
     return;
 }
 
 //we insert user into to DB
-register($name,$passwordH,$email,$con);
+register($name,$passwordH,$email,$redis);
 
 //close connection
-$con->close();
+$redis->close();
 
 //redirect to home page and keep login status
 alertAndJump("you have sign up successfully","../../../htdocs/index.html",3000)

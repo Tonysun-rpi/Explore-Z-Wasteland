@@ -2,26 +2,26 @@
 
 include "playerDataInitializer.php";
 
-function checkDup($username, $con){
+function checkDup($username, $redis){
 
 //check duplicate
-    $q = "SELECT * FROM `user` WHERE account_id=$username";
-    $result = $con->query($q);
-    if ($result->num_rows > 0) {
+    $result = $redis->hExists('password',$username);
+    if ($result) {
+
         return true;
     } else {
+
         return false;
     }
 }
 
-function register($username, $passwordH,$email, $con)
+function register($username, $passwordH,$email, $redis)
 {
-    $q = "INSERT INTO `user` (`user_id`, `account_id`, `password`, `email`) 
-    VALUES (NULL, '$username', '$passwordH', '$email')";
-    $con->query($q);
+    $redis->hSet('password',$username,$passwordH);
+    $redis->hSet('email',$username,$email);
 
 
-    playerDataInitialize($username,$con);
+    playerDataInitialize($username,$redis);
 }
 
 ?>

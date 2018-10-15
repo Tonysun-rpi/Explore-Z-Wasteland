@@ -7,14 +7,16 @@
  */
 
 
-function connectDB($host, $username, $password,$database)
+function connectDB()
 {
-    $con = new mysqli($host,$username,$password,$database);
-    if(!$con){
-        die("can't connect");
+    try{
+    $redis = new redis();
+    }
+    catch(Exception $e){
+        die($e->getMessage());
     }
 
-    return $con;
+    return $redis;
 }
 
 
