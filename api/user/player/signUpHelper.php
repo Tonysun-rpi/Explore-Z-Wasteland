@@ -5,7 +5,7 @@ include "playerDataInitializer.php";
 function checkDup($username, $redis){
 
 //check duplicate
-    $result = $redis->hExists('password',$username);
+    $result = $redis->hGet('password',$username);
     if ($result) {
 
         return true;

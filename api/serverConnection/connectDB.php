@@ -11,6 +11,7 @@ function connectDB()
 {
     try{
     $redis = new redis();
+    $redis->connect('127.0.0.1');
     }
     catch(Exception $e){
         die($e->getMessage());
