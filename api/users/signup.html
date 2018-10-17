@@ -11,8 +11,8 @@
 <div>
     <ul class="topNav">
         <li class="topNavLeft"><a href="../../htdocs/index.html">Home</a></li>
-        <li class="topNavRight"><a href="/signup.html">Sign up</a></li>
-        <li class="topNavRight"><a href="ml">Log in</a></li>
+        <li class="topNavRight"><a href="/api/users/signup.html">Sign up</a></li>
+        <li class="topNavRight"><a href="/api/users/signup.html">Log in</a></li>
     </ul>
 </div>
 
@@ -21,7 +21,8 @@
         <p>Username: <input type="text" name="name"></p>
         <p>Password: <input type="text" name="password"></p>
         <p>Email: <input type="text" name="email"></p>
-        <p><input type="submit" name="submit" value="subimt"></p>
+        <span class="error">* <?php echo $nameErr;?></span>
+        <p><input type="submit" name="submit" value="submit"></p>
     </form>
 </div>
 
