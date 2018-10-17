@@ -20,7 +20,9 @@ if(strlen($_POST['password'])<8){
 }
 $passwordH =md5($_POST['password']);//get user password
 
-
+if (!preg_match("/([\w\-]+\@[\w\-]+\.[\w\-]+)/",$email)) {
+    alertAndJump('Please enter an valid e-mail','../../../users/signup.html',1);
+}
 //check duplication
 $is_dup=checkDup($name,$redis);
 if($is_dup) {
