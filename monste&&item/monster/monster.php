@@ -9,7 +9,7 @@ require_once ("monster_data.php");
 
 class monster
 {
-    var $redis;
+    //var $redis;
     var $name;
     var $health;
     var $magic_resistance;
@@ -19,14 +19,20 @@ class monster
     var $reword; //掉落素材
 
     function __construct( $n ){
-        $this->redis=connectDB();
+        $redis=connectDB();
         $this->name=$n;
+        $this->health=$redis->hget($n,"health");
+        $this->magic_resistance=$redis->hget($n,"magic_resistance");
+        $this->armor=$redis->hget($n,"armor");
+        $this->wealth=$redis->hget($n,"wealth");
+
 
 
     }
 
     function is_attacted($h){
         $this->health-=$h;
+        return;
     }
 
 }
