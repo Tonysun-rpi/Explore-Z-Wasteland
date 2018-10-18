@@ -9,14 +9,13 @@ require_once ("monster_data.php");
 
 class monster
 {
-    //var $redis;
+    var $redis;
     var $name;
     var $damage;
     var $health;
     var $magic_resistance;
     var $armor;
     var $max_health;
-    var $redis;
 
     var $wealth; //掉落金币
     var $reward_1; //掉落素材
@@ -28,16 +27,16 @@ class monster
     function __construct( $n ){
         $this->redis=connectDB();
         $this->name=$n;
-        $this->damage=$redis->hget($n,"damage");
-        $this->health=$redis->hget($n,"health");
-        $this->magic_resistance=$redis->hget($n,"magic_resistance");
-        $this->armor=$redis->hget($n,"armor");
-        $this->wealth=$redis->hget($n,"wealth");
-        $this->reward_1=$redis->hget($n,"reward_1");
-        $this->reward_2=$redis->hget($n,"reward_2");
-        $this->reward_3=$redis->hget($n,"reward_3");
-        $this->reward_4=$redis->hget($n,"reward_4");
-        $this->reward_rate=$redis->hget($n,"reward_rate");
+        $this->damage=$this->redis->hget($n,"damage");
+        $this->health=$this->redis->hget($n,"health");
+        $this->magic_resistance=$this->redis->hget($n,"magic_resistance");
+        $this->armor=$this->redis->hget($n,"armor");
+        $this->wealth=$this->redis->hget($n,"wealth");
+        $this->reward_1=$this->redis->hget($n,"reward_1");
+        $this->reward_2=$this->redis->hget($n,"reward_2");
+        $this->reward_3=$this->redis->hget($n,"reward_3");
+        $this->reward_4=$this->redis->hget($n,"reward_4");
+        $this->reward_rate=$this->redis->hget($n,"reward_rate");
         $this->max_health=$this->health;
         //here
 
