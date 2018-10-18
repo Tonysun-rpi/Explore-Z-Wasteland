@@ -24,6 +24,11 @@ class monster
     var $reward_4;
     var $reward_rate; //掉落素材倍率
 
+    public function monster_die(){
+        
+        //从该玩家的地图上移除该怪物
+    }
+
     function __construct( $n ){
         $this->redis=connectDB();
         $this->name=$n;
