@@ -25,6 +25,7 @@ class monster
         $this->magic_resistance=$redis->hget($n,"magic_resistance");
         $this->armor=$redis->hget($n,"armor");
         $this->wealth=$redis->hget($n,"wealth");
+        //here
 
 
 
