@@ -25,7 +25,7 @@ class monster
     var $reward_rate; //掉落素材倍率
 
     public function monster_die(){
-        
+
         //从该玩家的地图上移除该怪物
     }
 
@@ -69,6 +69,7 @@ class monster
             }
             else{
                 $num=ceil($value/$random);
+                $num=min($num,10);
                 $reward_list[$key]=$num;
             }
         }
