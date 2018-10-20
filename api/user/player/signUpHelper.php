@@ -5,7 +5,7 @@ include "playerDataInitializer.php";
 function checkDup($username, $redis){
 
 //check duplicate
-    $result = $redis->hGet('password',$username);
+    $result = $redis->exists($username);
     if ($result) {
 
         return true;
@@ -15,10 +15,16 @@ function checkDup($username, $redis){
     }
 }
 
+function checkValid($username)
+{
+    if(strpos($username, '_') !== false) return false;
+    return true;
+}
+
 function register($username, $passwordH,$email, $redis)
 {
-    $redis->hSet('password',$username,$passwordH);
-    $redis->hSet('email',$username,$email);
+    $redis->hSet($username,'password',$passwordH);
+    $redis->hSet($username,'email',$email);
 
 
     playerDataInitialize($username,$redis);
