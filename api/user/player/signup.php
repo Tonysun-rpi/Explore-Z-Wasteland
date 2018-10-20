@@ -28,7 +28,8 @@ if (!preg_match("/([\w\-]+\@[\w\-]+\.[\w\-]+)/",$email)) {
 }
 //check duplication
 $is_dup=checkDup($name,$redis);
-if($is_dup) {
+$is_valid=checkValid($name);
+if($is_dup || !$is_valid) {
     $user_err="Please pick another Username";
     alertAndJump('Please pick another Username','../../../users/signup.html',1);
     return;
