@@ -16,6 +16,7 @@ class monster
     var $magic_resistance;
     var $armor;
     var $max_health;
+    var $level;
 
     var $wealth; //掉落金币
     var $reward_1; //掉落素材
@@ -43,6 +44,8 @@ class monster
         $this->reward_4=$this->redis->hget($n,"reward_4");
         $this->reward_rate=$this->redis->hget($n,"reward_rate");
         $this->max_health=$this->health;
+        $this->level=$this->redis->hget($n,"level");
+        $this->redis->close();
         //here
 
 
@@ -56,6 +59,7 @@ class monster
 
     public function give_reword(){
         //p 是获得该物品的概率
+        $this->redis=connectDB();
         $p1=$this->redis->hget("reward",$this->reward_1)*$this->reward_rate;
         $p2=$this->redis->hget("reward",$this->reward_2)*$this->reward_rate;
         $p3=$this->redis->hget("reward",$this->reward_3)*$this->reward_rate;
@@ -73,6 +77,7 @@ class monster
                 $reward_list[$key]=$num;
             }
         }
+        $this->redis->close();
         return $reward_list;
     }
 
@@ -86,5 +91,3 @@ class monster
     }
 
 }
-
-?>
