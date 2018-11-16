@@ -1,1 +1,0 @@
-setTimeout(location.href="signup.html", 1);
