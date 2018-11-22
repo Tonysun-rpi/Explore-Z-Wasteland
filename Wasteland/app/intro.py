@@ -1,4 +1,5 @@
 from tkinter import Tk, Label, Button
+from app.Game import initGame
 import app.main_game
 
 
@@ -17,7 +18,7 @@ class IntroGUI:
 		self.exit_game.pack()
 
 	def start_game(self):
-		# choose save file and start game
+		game = initGame()
 		pass
 
 	def exit_game(self):

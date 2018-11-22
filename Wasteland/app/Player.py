@@ -1,7 +1,7 @@
 # class for player
 class Player:
 	def __init__(self):
-		self.x_pos = 49
+		self.x_pos = 70
 		self.y_pos = 49
 		self.is_moving = False
 		self.speed = 1

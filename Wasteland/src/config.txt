@@ -1,0 +1,7 @@
+map_file = "src/map.csv"
+player_file = ""
+disp_w=720
+disp_h=820
+tile_len=20
+tile_num=15
+mult=2.4
