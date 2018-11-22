@@ -11,6 +11,19 @@ class Map:
 	def get_tiles(self):
 		return self.tiles
 
+	def toSurface(self,image_dict,tile_size):
+		#TODO:error check
+
+		#create surface
+		surface = pygame.Surface((self.width * tile_size, self.height * tile_size))
+
+		#fill in surface
+		for row in range(len(self.tiles)):
+			for col in range(len(self.tiles)):
+				surface.blit(image_dict[self.tiles[row][col].name], (col * tile_size, row * tile_size, tile_size, tile_size))
+
+		return surface
+
 def read_map(filename):
 	temp_map = []
 	with open(filename, 'r') as f:
@@ -34,19 +47,3 @@ def obstacle(my_map, x, y):
 		return True
 	return False
 
-def loadMapSurface(map,x,y,image_dict,surface=None):
-	if(not surface):
-		surface = pygame.Surface((300,300))
-	row_s = 0
-	for row_m in range(y-15,y+16):
-		col_s = 0
-		for col_m in range(x-15,x+16):
-
-			if(row_m < 0 or col_m < 0):
-				surface.blit(image_dict['mt'],(row_s*20,col_s*20,20,20))
-			else:
-				surface.blit(image_dict[map.get_tiles()[row_m][col_m].name],(col_s*20,row_s*20,20,20))
-			col_s += 1
-		row_s += 1
-	surface = surface.convert()
-	return surface

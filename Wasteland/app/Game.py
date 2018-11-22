@@ -1,28 +1,32 @@
 import pygame
-from app.Map import read_map,loadMapSurface
+from app.Map import read_map
 from app.Player import Player
 
 class Game:
     def __init__(self):
         self.filename = "src/map.csv"
         # TODO: read config
-        screen_size = (720,820)
-        map_small_size = (450,450)
+        self.screen_size = (720,820)
+        self.map_player_area = (0,0,450,450)
+        self.map_main_size = (600,600)
+        self.map_main_loc = (0,0)
+        self.map_main_area = self.map_main_loc+self.map_main_size
+        self.tile_size = 20
         # TODO: load data
-        image_dict_str = {
+        self.image_dict_str = {
             'f':'forest.jpg',   'g':'grassland.jpg',
             'p':'plain.jpg',    'mt':'mountain.jpg',
             'ml':'marshland.jpg', 'h':'hill.jpg',
             'i':'ice.jpg',      'sf':'snowfield.jpg',
             'sb':'snowberg.jpg','e':'exit.jpg',
             'w':'water.jpg',    'b1':'bridge_h.jpg',
-            'b2':'bridge_v.jpg'
+            'b2':'bridge_v.jpg','player':'player.jpg'
         }
 
-        direct = 'img/'
-        image_dict = {}
-        for c,str in image_dict_str.items():
-            image_dict[c] = pygame.image.load(direct+str)
+        self.direct = 'img/'
+        self.image_dict = {}
+        for c,str in self.image_dict_str.items():
+            self.image_dict[c] = pygame.image.load(self.direct+str)
 
 
         #initialize map
@@ -32,10 +36,12 @@ class Game:
         self.player = Player()
 
         #initialize surfaces
-        screen = pygame.display.set_mode(screen_size)
-        map_surface = loadMapSurface(self.map,self.player.x_pos,self.player.y_pos,image_dict)
-        map_surface = pygame.transform.scale(map_surface,map_small_size)
-        screen.blit(map_surface,(0,0)+map_small_size)
+        screen = pygame.display.set_mode(self.screen_size)
+        self.map_main_surface = self.map.toSurface(self.image_dict,self.tile_size)
+        # draw the player
+        self.map_main_surface.blit(self.image_dict['player'],self.player.getArea(self.tile_size))
+
+        screen.blit(pygame.transform.scale(self.map_main_surface,self.map_main_size),self.map_main_area)
         pygame.display.flip()
 
 

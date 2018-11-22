@@ -1,7 +1,7 @@
 # class for player
 class Player:
 	def __init__(self):
-		self.x_pos = 70
+		self.x_pos = 49
 		self.y_pos = 49
 		self.is_moving = False
 		self.speed = 1
@@ -19,6 +19,9 @@ class Player:
 
 	def get_pos(self):
 		return self.x_pos, self.y_pos
+
+	def getArea(self,tile_size):
+		return (self.x_pos * tile_size,self.y_pos * tile_size,tile_size,tile_size)
 
 
 if __name__ == "__init__":
