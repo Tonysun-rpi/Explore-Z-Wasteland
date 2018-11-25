@@ -8,8 +8,8 @@ class Game:
         # TODO: read config
         self.screen_size = (720,820)
         self.map_player_area = (0,0,450,450)
-        self.map_main_size = (600,600)
-        self.map_main_loc = (0,0)
+        self.map_main_size = (100,100)
+        self.map_main_loc = (500,500)
         self.map_main_area = self.map_main_loc+self.map_main_size
         self.tile_size = 20
         # TODO: load data
@@ -35,11 +35,16 @@ class Game:
         #initialize player
         self.player = Player()
 
-        #initialize surfaces
+        #initialize screen
         screen = pygame.display.set_mode(self.screen_size)
+
+        #initialize main map
         self.map_main_surface = self.map.toSurface(self.image_dict,self.tile_size)
-        # draw the player
+        # draw the player on main map
         self.map_main_surface.blit(self.image_dict['player'],self.player.getArea(self.tile_size))
+
+        #initialize player map
+        self.map_main_surface.subsurface(self.player.getRect())
 
         screen.blit(pygame.transform.scale(self.map_main_surface,self.map_main_size),self.map_main_area)
         pygame.display.flip()
