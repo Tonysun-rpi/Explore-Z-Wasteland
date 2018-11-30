@@ -42,11 +42,7 @@ class Game:
         self.map_main_surface = self.map.toSurface(self.image_dict, self.tile_size)
 
         # draw the player on main map
-<<<<<<< HEAD
         self.map_main_surface.blit(self.image_dict['player'], self.player.getArea())
-=======
-        self.map_main_surface.blit(self.image_dict['player'],self.player.getArea())
->>>>>>> 1e6289c1d53abdf4db124332b154b3ebddab63c1
 
         # initialize player map
         self.map_main_surface.subsurface(self.player.getRect())
