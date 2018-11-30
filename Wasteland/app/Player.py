@@ -1,5 +1,6 @@
 import pygame
 
+
 # class for player
 class Player:
 	def __init__(self):
@@ -14,7 +15,7 @@ class Player:
 	def move(self, direction):
 		if direction == 'up' and self.y_pos > 0:
 			self.y_pos -= 1
-			self.rect.move_ip(0,-1)
+			self.rect.move_ip(0, -1)
 		elif direction == 'down' and self.y_pos < 99:
 			self.y_pos += 1
 			self.rect.move_ip(0, 1)
@@ -33,7 +34,6 @@ class Player:
 
 	def getRect(self):
 		return self.rect
-
 
 
 if __name__ == "__init__":

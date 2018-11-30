@@ -1,5 +1,5 @@
 from tkinter import Tk, Label, Button
-from app.Game import initGame
+from app.Game import initGame, Game
 import app.main_game
 
 
@@ -30,3 +30,7 @@ def init():
 	root = Tk()
 	intro_window = IntroGUI(root)
 	root.mainloop()
+
+
+if __name__ == '__init__':
+	init()
