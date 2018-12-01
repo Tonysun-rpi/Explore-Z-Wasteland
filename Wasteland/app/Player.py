@@ -9,21 +9,28 @@ class Player:
 		self.is_moving = False
 		self.speed = 1
 		self.backpack = dict()
-		self.rect = pygame.Rect(self.x_pos * self.tile_size, self.y_pos * self.tile_size, self.tile_size, self.tile_size)
+		self.rect = pygame.Rect(max(self.x_pos - 7, 0) * self.tile_size, min(self.y_pos - 7, 99) * self.tile_size, self.tile_size * 15, self.tile_size * 15)
+		print(self.rect)
 
-	def move(self, direction):
-		if direction == 'up' and self.y_pos > 0:
+	def moveUp(self):
+		if self.y_pos > 0:
 			self.y_pos -= 1
-			self.rect.move_ip(0,-1)
-		elif direction == 'down' and self.y_pos < 99:
+			self.rect.move_ip(0,-1 * self.tile_size)
+
+	def moveDown(self):
+		if self.y_pos < 99:
 			self.y_pos += 1
-			self.rect.move_ip(0, 1)
-		elif direction == 'left' and self.x_pos > 0:
+			self.rect.move_ip(0, 1 * self.tile_size)
+
+	def moveLeft(self):
+		if self.x_pos > 0:
 			self.x_pos -= 1
-			self.rect.move_ip(-1, 0)
-		elif direction == 'right' and self.x_pos < 99:
+			self.rect.move_ip(-1 * self.tile_size, 0)
+
+	def moveRight(self):
+		if self.x_pos < 99:
 			self.x_pos += 1
-			self.rect.move_ip(1, 0)
+			self.rect.move_ip(1 * self.tile_size, 0)
 
 	def get_pos(self):
 		return self.x_pos, self.y_pos
