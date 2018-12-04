@@ -9,13 +9,13 @@ class Game:
         # TODO: read config
         self.tile_size = 20
         self.screen_size = (720,820)
-        self.map_player_size = (450, 450)
-        self.map_player_loc = (0, 0)
-        self.map_player_area = self.map_player_loc + self.map_player_size
+        self.screen_player_size = (300, 300)
+        self.screen_player_loc = (0, 0)
+        self.screen_player_area = self.screen_player_loc + self.screen_player_size
         self.map_main_size = (100,100)
         self.map_main_loc = (500,500)
         self.map_main_area = self.map_main_loc + self.map_main_size
-        self.player_area = (7 * self.tile_size, 7 * self.tile_size, self.tile_size, self.tile_size)
+        self.player_area = (300 / 15 * 7, 300 / 15 * 7, 300 / 15, 300 / 15)
 
         # TODO: load data
         self.image_dict_str = {
@@ -49,12 +49,15 @@ class Game:
         #initialize player map surface
         self.map_player_surface = self.map_main_surface.subsurface(self.player.getRect())
 
-        # draw the player on player map
-        self.map_player_surface.blit(self.image_dict['player'], self.player_area)
+        # initialize screen_player
+        self.screen_player = pygame.transform.scale(self.map_player_surface, self.screen_player_size)
+
+        # draw the player on screen_player
+        self.screen_player.blit(self.image_dict['player'].convert(), self.player_area)
 
         #fill surfaces on the screen
         self.screen.blit(pygame.transform.scale(self.map_main_surface,self.map_main_size),self.map_main_area)
-        self.screen.blit(pygame.transform.scale(self.map_player_surface,self.map_player_size),self.map_player_area)
+        self.screen.blit(self.screen_player,self.screen_player_area)
 
         pygame.display.flip()
 
@@ -117,9 +120,10 @@ class Game:
             #update the main surface
             if(player_map_update):
                 self.map_player_surface = self.map_main_surface.subsurface(self.player.getRect())
-                self.map_player_surface.blit(self.image_dict['player'], self.player_area)
-                self.screen.blit(pygame.transform.scale(self.map_player_surface, self.map_player_size),self.map_player_area)
-                pygame.display.update(self.map_player_area)
+                self.screen_player = pygame.transform.scale(self.map_player_surface, self.screen_player_size)
+                self.screen_player.blit(self.image_dict['player'], self.player_area)
+                self.screen.blit(pygame.transform.scale(self.screen_player, self.screen_player_size),self.screen_player_area)
+                pygame.display.update(self.screen_player_area)
 
         if(game_exit):
             pygame.quit()
