@@ -1,5 +1,5 @@
 from tkinter import Tk, Label, Button
-from app.Game import initGame, Game
+from app.Game import init_game, Game
 import app.main_game
 
 
@@ -18,7 +18,7 @@ class IntroGUI:
 		self.exit_game.pack()
 
 	def start_game(self):
-		game = initGame()
+		init_game()
 		pass
 
 	def exit_game(self):
@@ -28,9 +28,10 @@ class IntroGUI:
 
 def init():
 	root = Tk()
-	intro_window = IntroGUI(root)
+	IntroGUI(root)
 	root.mainloop()
 
 
 if __name__ == '__init__':
+	# TODO: use pygame instead of Tkinter to implement the intro page
 	init()

@@ -29,10 +29,10 @@ class Player:
 	def get_pos(self):
 		return self.x_pos, self.y_pos
 
-	def getArea(self):
-		return (self.x_pos * self.tile_size,self.y_pos * self.tile_size,self.tile_size,self.tile_size)
+	def get_area(self):
+		return self.x_pos * self.tile_size, self.y_pos * self.tile_size, self.tile_size, self.tile_size
 
-	def getRect(self):
+	def get_rect(self):
 		return self.rect
 
 

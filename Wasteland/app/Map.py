@@ -11,18 +11,19 @@ class Map:
 	def get_tiles(self):
 		return self.tiles
 
-	def toSurface(self,image_dict,tile_size):
-		#TODO:error check
+	def to_surface(self, image_dict, tile_size):
+		# TODO:error check
 
-		#create surface
+		# create surface
 		surface = pygame.Surface((self.width * tile_size, self.height * tile_size))
 
-		#fill in surface
+		# fill in surface
 		for row in range(len(self.tiles)):
 			for col in range(len(self.tiles)):
 				surface.blit(image_dict[self.tiles[row][col].name], (col * tile_size, row * tile_size, tile_size, tile_size))
 
 		return surface
+
 
 def read_map(filename):
 	temp_map = []
