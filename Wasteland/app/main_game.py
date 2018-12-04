@@ -38,8 +38,5 @@ def button(main_canvas, msg, x, y, w, h, ic, ac, action=None):
 	main_canvas.blit(txt_surf, txt_rect)
 
 
-
-
-
 def init():
 	pass

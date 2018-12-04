@@ -3,51 +3,51 @@ import sys
 from app.Map import Map, read_map, obstacle
 from app.Player import Player
 
+
 class Game:
     def __init__(self):
         self.filename = "src/map.csv"
         # TODO: read config
         self.tile_size = 20
-        self.screen_size = (720,820)
+        self.screen_size = (720, 820)
         self.screen_player_size = (300, 300)
         self.screen_player_loc = (0, 0)
         self.screen_player_area = self.screen_player_loc + self.screen_player_size
-        self.map_main_size = (100,100)
-        self.map_main_loc = (500,500)
+        self.map_main_size = (100, 100)
+        self.map_main_loc = (500, 500)
         self.map_main_area = self.map_main_loc + self.map_main_size
         self.player_area = (300 / 15 * 7, 300 / 15 * 7, 300 / 15, 300 / 15)
 
         # TODO: load data
         self.image_dict_str = {
-            'f':'forest.jpg',   'g':'grassland.jpg',
-            'p':'plain.jpg',    'mt':'mountain.jpg',
+            'f':'forest.jpg',     'g':'grassland.jpg',
+            'p':'plain.jpg',      'mt':'mountain.jpg',
             'ml':'marshland.jpg', 'h':'hill.jpg',
-            'i':'ice.jpg',      'sf':'snowfield.jpg',
-            'sb':'snowberg.jpg','e':'exit.jpg',
-            'w':'water.jpg',    'b1':'bridge_h.jpg',
-            'b2':'bridge_v.jpg','player':'player.jpg'
+            'i':'ice.jpg',        'sf':'snowfield.jpg',
+            'sb':'snowberg.jpg',  'e':'exit.jpg',
+            'w':'water.jpg',      'b1':'bridge_h.jpg',
+            'b2':'bridge_v.jpg',  'player':'player.jpg'
         }
 
         self.direct = 'img/'
         self.image_dict = {}
-        for c,str in self.image_dict_str.items():
-            self.image_dict[c] = pygame.image.load(self.direct+str)
+        for c, img_filename in self.image_dict_str.items():
+            self.image_dict[c] = pygame.image.load(self.direct + img_filename)
 
-
-        #initialize map
+        # initialize map
         self.map = read_map(self.filename)
 
-        #initialize player
+        # initialize player
         self.player = Player()
 
-        #initialize screen
+        # initialize screen
         self.screen = pygame.display.set_mode(self.screen_size)
 
-        #initialize main map surface
-        self.map_main_surface = self.map.toSurface(self.image_dict,self.tile_size)
+        # initialize main map surface
+        self.map_main_surface = self.map.to_surface(self.image_dict, self.tile_size)
 
-        #initialize player map surface
-        self.map_player_surface = self.map_main_surface.subsurface(self.player.getRect())
+        # initialize player map surface
+        self.map_player_surface = self.map_main_surface.subsurface(self.player.get_rect())
 
         # initialize screen_player
         self.screen_player = pygame.transform.scale(self.map_player_surface, self.screen_player_size)
@@ -55,9 +55,9 @@ class Game:
         # draw the player on screen_player
         self.screen_player.blit(self.image_dict['player'].convert(), self.player_area)
 
-        #fill surfaces on the screen
-        self.screen.blit(pygame.transform.scale(self.map_main_surface,self.map_main_size),self.map_main_area)
-        self.screen.blit(self.screen_player,self.screen_player_area)
+        # fill surfaces on the screen
+        self.screen.blit(pygame.transform.scale(self.map_main_surface, self.map_main_size), self.map_main_area)
+        self.screen.blit(self.screen_player, self.screen_player_area)
 
         pygame.display.flip()
 
@@ -81,22 +81,22 @@ class Game:
                     if event.key == pygame.K_UP or event.key == pygame.K_w:
                         if not obstacle(self.map, max(self.player.y_pos - 1, 0), self.player.x_pos):
 
-                            self.player.moveUp()
+                            self.player.move_up()
                             player_map_update = True
 
                     if event.key == pygame.K_DOWN or event.key == pygame.K_s:
                         if not obstacle(self.map, min(self.player.y_pos + 1, 99), self.player.x_pos):
-                            self.player.moveDown()
+                            self.player.move_down()
                             player_map_update = True
 
                     if event.key == pygame.K_LEFT or event.key == pygame.K_a:
                         if not obstacle(self.map, self.player.y_pos, max(self.player.x_pos - 1, 0)):
-                            self.player.moveLeft()
+                            self.player.move_left()
                             player_map_update = True
 
                     if event.key == pygame.K_RIGHT or event.key == pygame.K_d:
                         if not obstacle(self.map, self.player.y_pos, min(self.player.x_pos + 1, 99)):
-                            self.player.moveRight()
+                            self.player.move_right()
                             player_map_update = True
 
                 # if event.type == pygame.KEYUP:
@@ -117,21 +117,23 @@ class Game:
             # begin drawing the canvas
             # TODO: add more canvas here
 
-            #update the main surface
-            if(player_map_update):
-                self.map_player_surface = self.map_main_surface.subsurface(self.player.getRect())
+            # update the main surface
+            if player_map_update:
+                self.map_player_surface = self.map_main_surface.subsurface(self.player.get_rect())
                 self.screen_player = pygame.transform.scale(self.map_player_surface, self.screen_player_size)
                 self.screen_player.blit(self.image_dict['player'], self.player_area)
-                self.screen.blit(pygame.transform.scale(self.screen_player, self.screen_player_size),self.screen_player_area)
+                self.screen.blit(pygame.transform.scale(self.screen_player, self.screen_player_size), self.screen_player_area)
                 pygame.display.update(self.screen_player_area)
 
-        if(game_exit):
+        if game_exit:
             pygame.quit()
             sys.exit()
 
-def quit_game():
-	pygame.quit()
-	sys.exit()
 
-def initGame():
+def quit_game():
+    pygame.quit()
+    sys.exit()
+
+
+def init_game():
     return Game()

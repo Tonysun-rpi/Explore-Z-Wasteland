@@ -1,5 +1,5 @@
 from tkinter import Tk, Label, Button
-from app.Game import initGame
+from app.Game import init_game
 import app.main_game
 
 
@@ -18,8 +18,7 @@ class IntroGUI:
 		self.exit_game.pack()
 
 	def start_game(self):
-		game = initGame()
-		pass
+		init_game()
 
 	def exit_game(self):
 		# close the window
@@ -27,6 +26,7 @@ class IntroGUI:
 
 
 def init():
+	# TODO: change to pygame intro page
 	root = Tk()
-	intro_window = IntroGUI(root)
+	IntroGUI(root)
 	root.mainloop()

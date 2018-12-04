@@ -1,7 +1,6 @@
 # class for tiles
 class Tile:
 	def __init__(self, name, items=None, player_on=False, mob_on=False):
-		# self.is_obstacle = is_obstacle
 		if name == 'w' or name == 'mt' or name == 'sb':
 			self.obstacle = True
 		else:
