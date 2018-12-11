@@ -2,14 +2,14 @@
 
 # Profile
 class Profile(object):
-    def __init__(self, name, level, gender, age, hunger, health, weapon, armor):
+    def __init__(self, name, level, gender, age, hunger, health, attack, armor):
         self.name = name
         self.level = level
         self.gender = gender
         self.age = age
         self.hunger = hunger
         self.health = health
-        self.weapon = weapon
+        self.attack = attack
         self.armor = armor
 
 # Storage
@@ -34,4 +34,3 @@ class Bag(object):
         self.volume = volume
         self.item = item
         
-
