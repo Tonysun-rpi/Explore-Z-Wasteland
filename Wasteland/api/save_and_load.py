@@ -1,4 +1,4 @@
-from class_declaration import Profile, Storage, Base, Bag
+from api.class_declaration import Profile, Storage, Base, Bag
 # TODO: This S/L api uses txt files for the time being, should use databases in the future
 
 
