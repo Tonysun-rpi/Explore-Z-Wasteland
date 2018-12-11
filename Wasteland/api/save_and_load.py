@@ -22,6 +22,7 @@ from class_declaration import Profile, Storage, Base, Bag
 
 # save_file: the object that contains all the information
 # filename: filename for save file
+
 def save(save_file, filename):
 	f = open(filename, "w") 
 	for i in save_file.keys():
@@ -70,8 +71,33 @@ def save(save_file, filename):
 
 # save_file: the object that contains all the information
 # filename: filename for save file
+
 def load(save_file, filename):
-	pass
+	f = open(filename, "r")
+	content = f.read().splitlines()
+	for i in content:
+		partial = i.split(" ")
+		#print(partial)
+		#if Profile
+		if (partial[0] == "Profile:"):
+			profile = Profile(partial[1], partial[2], partial[3], partial[4], partial[5], partial[6], partial[7], partial[8])
+			save_file["P"].append(profile)
+
+		#if Storage
+		if (partial[0] == "Storage:"):
+			storage = Storage(partial[1], partial[2], partial[3])
+			save_file["S"].append(storage)
+
+		#if Base
+		if (partial[0] == "Base:"):
+			storage = Storage(partial[3], partial[4], partial[5])
+			base = Base(partial[1], partial[2], storage)
+			save_file["Bs"].append(base)
+
+		#if Bag
+		if (partial[0] == "Bag:"):
+			bag = Bag(partial[1], partial[2], partial[3])
+			save_file["Bg"].append(bag)
 
 
 
@@ -85,4 +111,6 @@ base = Base("try_base", 10, storage)
 bag = Bag("try_bag", 1, [])
 
 save_file = {"P": [profile], "S": [storage], "Bs": [base], "Bg": [bag]}
-save(save_file, "try1.txt")
+load_file = {"P": [], "S": [], "Bs": [], "Bg": []}
+#save(save_file, "try1.txt")
+load(load_file, "try1.txt")
